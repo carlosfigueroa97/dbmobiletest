@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using dbmobiletest.Helpers;
 using dbmobiletest.Models.DB;
 using dbmobiletest.ViewModels.Base;
-using dbmobiletest.Views;
 using Xamarin.Forms;
 
 namespace dbmobiletest.ViewModels
@@ -152,7 +151,7 @@ namespace dbmobiletest.ViewModels
             }
             else
             {
-                UserList = new ObservableCollection<User>(users);
+                UserList = new ObservableCollection<User>();
             }
         }
 

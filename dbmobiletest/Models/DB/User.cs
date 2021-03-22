@@ -1,5 +1,4 @@
-﻿using System;
-namespace dbmobiletest.Models.DB
+﻿namespace dbmobiletest.Models.DB
 {
     public class User
     {

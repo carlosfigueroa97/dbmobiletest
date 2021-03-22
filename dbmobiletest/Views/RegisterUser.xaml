@@ -13,11 +13,17 @@
             TextColor="Black"
             Text="Name:"/>
         <Entry
+            TextColor="Black"
+            PlaceholderColor="LightGray"
+            Placeholder="Insert your name"
             Text="{Binding Name}"/>
         <Label
             TextColor="Black"
             Text="Last name:"/>
         <Entry
+            TextColor="Black"
+            PlaceholderColor="LightGray"
+            Placeholder="Insert your last name"
             Text="{Binding LastName}"/>
         <Button
             HorizontalOptions="Center"
@@ -28,6 +34,7 @@
             SelectionMode="None">
             <CollectionView.EmptyView>
                 <Label
+                    TextColor="Black"
                     VerticalTextAlignment="Center"
                     HorizontalTextAlignment="Center"
                     Text="NO DATA FOUND!"/>

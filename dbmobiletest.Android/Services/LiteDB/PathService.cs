@@ -12,14 +12,15 @@ namespace dbmobiletest.Droid.Services.LiteDB
     {
         public string GetLiteDatabasePath()
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), Strings.LiteDBName);
+            var pathFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var libFolder = Path.Combine(pathFolder, "..", "Library", "Databases");
 
-            if (!File.Exists(path))
+            if (!Directory.Exists(libFolder))
             {
-                File.Create(path).Dispose();
+                Directory.CreateDirectory(libFolder);
             }
 
-            return path;
+            return Path.Combine(libFolder, Strings.LiteDBName);
         }
     }
 }
