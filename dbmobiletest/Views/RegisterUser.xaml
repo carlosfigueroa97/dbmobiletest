@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="dbmobiletest.Views.RegisterUser"
+    Title="Register User"
+    BackgroundColor="White">
+    <StackLayout
+        Padding="10">
+        <Label
+            TextColor="Black"
+            Text="Name:"/>
+        <Entry
+            Text="{Binding Name}"/>
+        <Label
+            TextColor="Black"
+            Text="Last name:"/>
+        <Entry
+            Text="{Binding LastName}"/>
+        <Button
+            HorizontalOptions="Center"
+            Text="Save"
+            Command="{Binding SaveUserCommand}"/>
+        <CollectionView
+            ItemsSource="{Binding UserList}"
+            SelectionMode="None">
+            <CollectionView.EmptyView>
+                <Label
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"
+                    Text="NO DATA FOUND!"/>
+            </CollectionView.EmptyView>
+            <CollectionView.Header>
+                <StackLayout>
+                    <Line
+                        BackgroundColor="LightGray"
+                        X1="500"
+                        Y1="1"/>
+                    <Label
+                        TextColor="Black"
+                        HorizontalTextAlignment="Center"
+                        Text="User List"/>
+                    <Line
+                        BackgroundColor="LightGray"
+                        X1="500"
+                        Y1="1"/>
+                </StackLayout>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout
+                        Padding="0,10">
+                        <Label
+                            TextColor="Black"
+                            Text="{Binding Id, StringFormat='Id: {0}'}"/>
+                        <Label
+                            TextColor="Black"
+                            Text="{Binding FullName, StringFormat='Name: {0}'}"/>
+                        <Line
+                            Margin="0,5"
+                            BackgroundColor="LightGray"
+                            X1="500"
+                            Y1="1"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

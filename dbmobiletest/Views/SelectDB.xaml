@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="dbmobiletest.Views.SelectDB"
+    Title="Select Database"
+    BackgroundColor="White">
+    <StackLayout>
+        <Button
+            HorizontalOptions="Center"
+            Text="LiteDB"
+            Command="{Binding LiteDBCommand}"/>
+    </StackLayout>
+</ContentPage>

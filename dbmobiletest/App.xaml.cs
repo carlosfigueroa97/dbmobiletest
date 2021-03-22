@@ -1,4 +1,5 @@
 ﻿using System;
+using dbmobiletest.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace dbmobiletest
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new SelectDB());
         }
 
         protected override void OnStart()
