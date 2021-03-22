@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using dbmobiletest.Droid.Services.LiteDB;
+using dbmobiletest.Helpers;
 using dbmobiletest.Services.LiteDB;
 using Xamarin.Forms;
 
@@ -11,7 +12,7 @@ namespace dbmobiletest.Droid.Services.LiteDB
     {
         public string GetLiteDatabasePath()
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "LiteDBTest");
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), Strings.LiteDBName);
 
             if (!File.Exists(path))
             {

@@ -2,9 +2,11 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:fn="clr-namespace:dbmobiletest.Helpers"
     x:Class="dbmobiletest.Views.RegisterUser"
     Title="Register User"
-    BackgroundColor="White">
+    BackgroundColor="White"
+    x:Name="registerUser">
     <StackLayout
         Padding="10">
         <Label
@@ -48,14 +50,33 @@
             </CollectionView.Header>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout
-                        Padding="0,10">
-                        <Label
-                            TextColor="Black"
-                            Text="{Binding Id, StringFormat='Id: {0}'}"/>
-                        <Label
-                            TextColor="Black"
-                            Text="{Binding FullName, StringFormat='Name: {0}'}"/>
+                    <StackLayout>
+                        <StackLayout
+                            Padding="0,10"
+                            Orientation="Horizontal">
+                            <StackLayout>
+                                <Label
+                                    TextColor="Black"
+                                    Text="{Binding Id, StringFormat='Id: {0}'}"/>
+                                <Label
+                                    TextColor="Black"
+                                    Text="{Binding FullName, StringFormat='Name: {0}'}"/>
+                            </StackLayout>
+                            <Label
+                                Margin="0,0,20,0"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalTextAlignment="Center"
+                                HorizontalTextAlignment="End"
+                                Text="{x:Static fn:Icons.DeleteIcon}"
+                                TextColor="Red"
+                                FontFamily="{StaticResource FontAwesomeFreeSolid}"
+                                FontSize="18">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="TapGestureRecognizer_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
                         <Line
                             Margin="0,5"
                             BackgroundColor="LightGray"

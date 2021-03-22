@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using dbmobiletest.Models.DB;
 using dbmobiletest.ViewModels;
 using Xamarin.Forms;
 
@@ -21,6 +23,13 @@ namespace dbmobiletest.Views
             if (_vm.UserList == null || !_vm.UserList.Any())
                 _vm.GetUsersCommand.Execute(null);
             base.OnAppearing();
+        }
+
+        void TapGestureRecognizer_Tapped(Object sender, EventArgs e)
+        {
+            var selectedItem = (User)((Label)sender).BindingContext;
+            _vm.SelectedItem = selectedItem;
+            _vm.DeleteUserCommand.Execute(null);
         }
     }
 }

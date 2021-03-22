@@ -19,6 +19,7 @@ namespace dbmobiletest.ViewModels
 
         public Command SaveUserCommand { get; set; }
         public Command GetUsersCommand { get; set; }
+        public Command DeleteUserCommand { get; set; }
 
         int _typeDB;
         public int TypeDB
@@ -62,29 +63,44 @@ namespace dbmobiletest.ViewModels
             }
         }
 
+        User _selectedItem;
+        public User SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+
+            set
+            {
+                SetValue(ref _selectedItem, value);
+            }
+        }
+
         #endregion
 
         public RegisterUserVM(INavigation navigation) : base(navigation)
         {
-            SaveUserCommand = new Command(async () => await ExecuteSaveUserCommand());
+            SaveUserCommand = new Command(() => ExecuteSaveUserCommand());
             GetUsersCommand = new Command(() => ExecuteGetUsersCommand());
+            DeleteUserCommand = new Command(() => ExecuteDeleteUserCommand());
         }
 
         #region Methods
 
-        async Task ExecuteSaveUserCommand()
+        private Task ExecuteSaveUserCommand()
         {
             try
             {
-
                 if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(LastName))
-                    return;
+                    return null;
 
                 var user = new User()
                 {
                     Id = new Random().Next(),
                     Name = Name,
                     LastName = LastName,
+                    FullName = $"{Name} {LastName}",
                     Status = 0
                 };
 
@@ -94,11 +110,14 @@ namespace dbmobiletest.ViewModels
                         var response = liteDBService.RegisterUser(user);
 
                         if (!response)
-                            return;
+                            return null;
                         break;
                     default:
                         break;
                 }
+
+                Name = null;
+                LastName = null;
 
                 GetUser();
             }
@@ -106,14 +125,11 @@ namespace dbmobiletest.ViewModels
             {
                 ExceptionHandler.LogAndSendException(this, nameof(ExecuteSaveUserCommand), ex);
             }
-            finally
-            {
-                Name = null;
-                LastName = null;
-            }
+
+            return null;
         }
 
-        private Task ExecuteGetUsersCommand()
+        private void ExecuteGetUsersCommand()
         {
             try
             {
@@ -123,8 +139,6 @@ namespace dbmobiletest.ViewModels
             {
                 ExceptionHandler.LogAndSendException(this, nameof(ExecuteGetUsersCommand), ex);
             }
-
-            return null;
         }
 
         private void GetUser()
@@ -139,6 +153,27 @@ namespace dbmobiletest.ViewModels
             else
             {
                 UserList = new ObservableCollection<User>(users);
+            }
+        }
+
+        private void ExecuteDeleteUserCommand()
+        {
+            try
+            {
+                if(SelectedItem != null)
+                {
+                    var response = liteDBService.DeleteUser(SelectedItem);
+                    if (response)
+                        GetUser();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.LogAndSendException(this, nameof(ExecuteGetUsersCommand), ex);
+            }
+            finally
+            {
+                SelectedItem = null;
             }
         }
 

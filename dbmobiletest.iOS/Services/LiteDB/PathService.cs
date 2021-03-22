@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using dbmobiletest.Helpers;
 using dbmobiletest.iOS.Services.LiteDB;
 using dbmobiletest.Services.LiteDB;
 using Xamarin.Forms;
@@ -19,7 +20,7 @@ namespace dbmobiletest.iOS.Services.LiteDB
                 Directory.CreateDirectory(libFolder);
             }
 
-            return Path.Combine(libFolder, "LiteDBTest");
+            return Path.Combine(libFolder, Strings.LiteDBName);
         }
     }
 }

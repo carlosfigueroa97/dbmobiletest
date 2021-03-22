@@ -9,13 +9,7 @@ namespace dbmobiletest.Models.DB
 
         public string LastName { get; set; }
 
-        public string FullName
-        {
-            get
-            {
-                return $"{Name} {LastName}";
-            }
-        }
+        public string FullName { get; set; }
 
         public int Status { get; set; }
     }

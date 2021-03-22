@@ -69,6 +69,22 @@ namespace dbmobiletest.Services.LiteDB
             return new List<User>();
         }
 
+        public bool DeleteUser(User user)
+        {
+            try
+            {
+                var response = _liteCollection.Delete(user.Id);
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.LogAndSendException(this, nameof(RegisterUser), ex);
+            }
+
+            return false;
+        }
+
         #endregion
     }
 }

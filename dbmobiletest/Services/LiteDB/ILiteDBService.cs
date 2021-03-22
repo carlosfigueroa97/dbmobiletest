@@ -9,5 +9,7 @@ namespace dbmobiletest.Services.LiteDB
         bool RegisterUser(User user);
 
         List<User> GetUsers();
+
+        bool DeleteUser(User user);
     }
 }
