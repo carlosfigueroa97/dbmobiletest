@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="dbmobiletest.Views.UpdateUser"
+    Title="Update user"
+    BackgroundColor="White">
+    <StackLayout>
+        <Entry
+            Placeholder="{Binding User.Name}"
+            PlaceholderColor="Black"
+            Text="{Binding Name}"/>
+        <Entry
+            Placeholder="{Binding User.LastName}"
+            PlaceholderColor="Black"
+            Text="{Binding LastName}"/>
+        <StackLayout
+            Orientation="Horizontal">
+            <Label
+                Text="Old Name: "/>
+            <Label
+                Text="{Binding User.FullName}"></Label>
+        </StackLayout>
+        <Button
+            Margin="10"
+            HorizontalOptions="Center"
+            Text="Update"
+            Command="{Binding UpdateUserCommand}"/>
+    </StackLayout>
+</ContentPage>

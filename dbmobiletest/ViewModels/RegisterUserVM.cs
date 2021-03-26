@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using dbmobiletest.Helpers;
 using dbmobiletest.Models.DB;
 using dbmobiletest.ViewModels.Base;
+using dbmobiletest.Views;
 using Xamarin.Forms;
 
 namespace dbmobiletest.ViewModels
@@ -19,6 +20,7 @@ namespace dbmobiletest.ViewModels
         public Command SaveUserCommand { get; set; }
         public Command GetUsersCommand { get; set; }
         public Command DeleteUserCommand { get; set; }
+        public Command GoToEditUserCommand { get; set; }
 
         int _typeDB;
         public int TypeDB
@@ -83,6 +85,7 @@ namespace dbmobiletest.ViewModels
             SaveUserCommand = new Command(() => ExecuteSaveUserCommand());
             GetUsersCommand = new Command(() => ExecuteGetUsersCommand());
             DeleteUserCommand = new Command(() => ExecuteDeleteUserCommand());
+            GoToEditUserCommand = new Command(async () => await ExecuteGoToEditUserCommand());
         }
 
         #region Methods
@@ -169,6 +172,27 @@ namespace dbmobiletest.ViewModels
             catch (Exception ex)
             {
                 ExceptionHandler.LogAndSendException(this, nameof(ExecuteGetUsersCommand), ex);
+            }
+            finally
+            {
+                SelectedItem = null;
+            }
+        }
+
+        async Task ExecuteGoToEditUserCommand()
+        {
+            try
+            {
+                if(SelectedItem == null)
+                {
+                    return;
+                }
+
+                await navigation.PushAsync(new UpdateUser(SelectedItem));
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.LogAndSendException(this, nameof(ExecuteGoToEditUserCommand), ex);
             }
             finally
             {

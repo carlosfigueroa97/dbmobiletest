@@ -11,5 +11,7 @@ namespace dbmobiletest.Services.LiteDB
         List<User> GetUsers();
 
         bool DeleteUser(User user);
+
+        bool UpdateUser(User user);
     }
 }

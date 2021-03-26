@@ -85,6 +85,21 @@ namespace dbmobiletest.Services.LiteDB
             return false;
         }
 
+        public bool UpdateUser(User user)
+        {
+            try
+            {
+                var response = _liteCollection.Update(user);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.LogAndSendException(this, nameof(UpdateUser), ex);
+            }
+
+            return false;
+        }
+
         #endregion
     }
 }

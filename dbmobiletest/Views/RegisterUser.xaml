@@ -71,7 +71,7 @@
                             </StackLayout>
                             <Label
                                 Margin="0,0,20,0"
-                                HorizontalOptions="FillAndExpand"
+                                HorizontalOptions="EndAndExpand"
                                 VerticalTextAlignment="Center"
                                 HorizontalTextAlignment="End"
                                 Text="{x:Static fn:Icons.DeleteIcon}"
@@ -81,6 +81,19 @@
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer
                                         Tapped="TapGestureRecognizer_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <Label
+                                Margin="0,0,20,0"
+                                VerticalTextAlignment="Center"
+                                HorizontalTextAlignment="End"
+                                Text="{x:Static fn:Icons.PenIcon}"
+                                TextColor="Blue"
+                                FontFamily="{StaticResource FontAwesomeFreeSolid}"
+                                FontSize="18">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="TapGestureRecognizer_Tapped_1"/>
                                 </Label.GestureRecognizers>
                             </Label>
                         </StackLayout>

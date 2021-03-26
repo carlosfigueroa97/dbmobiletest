@@ -22,14 +22,23 @@ namespace dbmobiletest.Views
         {
             if (_vm.UserList == null || !_vm.UserList.Any())
                 _vm.GetUsersCommand.Execute(null);
+
+            _vm.GetUsersCommand.Execute(null);
             base.OnAppearing();
         }
 
-        void TapGestureRecognizer_Tapped(Object sender, EventArgs e)
+        void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             var selectedItem = (User)((Label)sender).BindingContext;
             _vm.SelectedItem = selectedItem;
             _vm.DeleteUserCommand.Execute(null);
+        }
+
+        void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            var selectedItem = (User)((Label)sender).BindingContext;
+            _vm.SelectedItem = selectedItem;
+            _vm.GoToEditUserCommand.Execute(null);
         }
     }
 }
